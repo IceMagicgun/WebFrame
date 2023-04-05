@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+
+<head>
+    <title>ChatGpt</title>
+    <script src="/js/chat.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/chat.css">
+</head>
+
+<body>
+    <div id="loading-box" class="loaded">
+        <div class="loading-left-bg"></div>
+        <div class="loading-right-bg"></div>
+        <div class="spinner-box">
+            <div class="configure-border-1">
+                <div class="configure-core"></div>
+            </div>
+            <div class="configure-border-2">
+                <div class="configure-core"></div>
+            </div>
+            <div class="loading-word">加载中...</div>
+        </div>
+    </div>
+    <div id="root">
+        <div id="answer-box"  readonly></div>
+        <textarea id="question-box" name="question" placeholder="请在这里输入提问"></textarea>
+        <button id="submit-button">提问</button>
+    </div>
+</body>
+
+</html>

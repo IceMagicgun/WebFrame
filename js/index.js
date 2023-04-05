@@ -17,33 +17,34 @@ window.onload = function () {
 function FirstDraw(data) {
     console.log(data);
     let root = document.getElementById("root");
+    root.innerText=data.content
     
-    new Map(Object.entries(data["config"])).forEach(function (v, k) {
-        let box = document.createElement('div');
-        box.className="ShowData-Box";
-        new Map(Object.entries(v)).forEach(function(arr,index){
-            let level=document.createElement('div');
-            level.className="ShowData-Level";
-            arr.forEach(item=>{
-                let btn=document.createElement('div');
-                btn.className="ShowData-Btn";
-                btn.textContent=item.Text;
-                btn.setAttribute("ShowText",item.Text);
-                btn.onclick=function(){
-                    if(!btn.onCli){
-                        btn.className="ShowData-Btn-cli";
-                        btn.onCli=true;
-                    }else{
-                        btn.className="ShowData-Btn";
-                        btn.onCli=false;
-                    }
-                };
-                level.appendChild(btn);
-            });
-            box.appendChild(level);
-        });
-        root.appendChild(box);
-    });
+    // new Map(Object.entries(data["config"])).forEach(function (v, k) {
+    //     let box = document.createElement('div');
+    //     box.className="ShowData-Box";
+    //     new Map(Object.entries(v)).forEach(function(arr,index){
+    //         let level=document.createElement('div');
+    //         level.className="ShowData-Level";
+    //         arr.forEach(item=>{
+    //             let btn=document.createElement('div');
+    //             btn.className="ShowData-Btn";
+    //             btn.textContent=item.Text;
+    //             btn.setAttribute("ShowText",item.Text);
+    //             btn.onclick=function(){
+    //                 if(!btn.onCli){
+    //                     btn.className="ShowData-Btn-cli";
+    //                     btn.onCli=true;
+    //                 }else{
+    //                     btn.className="ShowData-Btn";
+    //                     btn.onCli=false;
+    //                 }
+    //             };
+    //             level.appendChild(btn);
+    //         });
+    //         box.appendChild(level);
+    //     });
+    //     root.appendChild(box);
+    // });
     let loadBox = document.getElementById("loading-box");
     setTimeout(function () {
         loadBox.className = "loaded";
