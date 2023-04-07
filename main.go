@@ -7,5 +7,5 @@ import (
 
 func main() {
 	myRouter := core.NewRouter()
-	http.ListenAndServe("localhost:8068", myRouter)
+	http.ListenAndServe("0.0.0.0:8068", myRouter)
 }

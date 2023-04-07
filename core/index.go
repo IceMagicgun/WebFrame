@@ -1,6 +1,7 @@
 package core
 
 import (
+	debugM "WebFrame/core/debug"
 	"WebFrame/module/open_ai"
 	"io/ioutil"
 	"net/http"
@@ -14,14 +15,16 @@ func NewRouter() *MyRouter {
 	ans := map[string]map[string]http.HandlerFunc{}
 	ans["POST"] = map[string]http.HandlerFunc{}
 	ans["GET"] = map[string]http.HandlerFunc{}
-	ans["POST"]["/GetData"] = open_ai.AskOnce
-	ans["GET"]["/GetData"] = open_ai.AskOnce
+	ans["POST"]["/GetData"] = open_ai.AskForever
+	ans["GET"]["/GetData"] = open_ai.AskForever
+	ans["POST"]["/GetHistory"] = open_ai.GetHistory
+	ans["GET"]["/GetHistory"] = open_ai.GetHistory
 	return &MyRouter{ans}
 }
 
 func (myRouter *MyRouter) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	var f http.HandlerFunc
-	println(req.Method, "  ", req.URL.Path)
+	debugM.Log(req.Method + "  " + req.URL.Path)
 	if handlerFuncs, has := myRouter.Mapping[req.Method]; has {
 		f = handlerFuncs[req.URL.Path]
 	}
