@@ -134,12 +134,19 @@ func ChatForever(model string, session string, message string) string {
 
 	//加锁判断 后续需写一个锁的工具类
 	mutex.Lock()
+	hasUnlock := false
+	defer func() {
+		if !hasUnlock {
+			mutex.Unlock()
+		}
+	}()
 	now := time_tool.Now()
 	if now-lastTime < 5 {
 		return "5秒内只能请求一次"
 	}
 	lastTime = now
 	mutex.Unlock()
+	hasUnlock = true
 
 	resp, err := client.Do(req)
 	if err != nil {
